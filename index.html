@@ -31,13 +31,15 @@
   --accent-wash:#E2EFEA;
   --signal:     #B4531C;
   --signal-wash:#F6E9DF;
+  --link:       #0B63CE;
+  --link-soft:  #9CC3EE;
   --shadow:     0 1px 2px rgba(20,27,25,.05), 0 8px 24px -16px rgba(20,27,25,.25);
 
   --f-display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --f-body:    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+  --f-body:    "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --f-mono:    ui-monospace, "Cascadia Mono", "Cascadia Code", "SF Mono", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
 
-  --measure: 66ch;
+  --measure: 68ch;
   --rail: 19rem;
   --gap: clamp(2rem, 4vw, 3.75rem);
 }
@@ -56,8 +58,15 @@
     --accent-wash:#13302A;
     --signal:     #E09256;
     --signal-wash:#322215;
+    --link:       #74B4F5;
+    --link-soft:  #2F5C86;
     --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
-  }
+   }
+
+  .p-github   { --brand: #E7EDEA; }
+  .p-dtu      { --brand: #E06A6A; }
+  .p-linkedin { --brand: #5CA8E8; }
+  .p-repec    { --brand: #93A6C0; }
 }
 :root[data-theme="dark"] {
   --paper:      #0D1312;
@@ -73,8 +82,14 @@
   --accent-wash:#13302A;
   --signal:     #E09256;
   --signal-wash:#322215;
+  --link:       #74B4F5;
+  --link-soft:  #2F5C86;
   --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
 }
+:root[data-theme="dark"] .p-github   { --brand: #E7EDEA; }
+:root[data-theme="dark"] .p-dtu      { --brand: #E06A6A; }
+:root[data-theme="dark"] .p-linkedin { --brand: #5CA8E8; }
+:root[data-theme="dark"] .p-repec    { --brand: #93A6C0; }
 
 /* ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
@@ -89,7 +104,7 @@ body {
   color: var(--ink);
   font-family: var(--f-body);
   font-size: 1.0625rem;
-  line-height: 1.62;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 a { color: var(--accent-ink); text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-underline-offset: .18em; }
@@ -143,7 +158,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .name { font-size: clamp(1.6rem, 2.2vw, 1.95rem); letter-spacing: -.025em; }
-.role { margin-top: .5rem; font-size: .9375rem; color: var(--ink-2); line-height: 1.5; }
+.role { margin-top: .5rem; font-size: .9375rem; color: var(--ink-2); line-height: 1.5; text-align: left; }
 .affil { margin-top: .35rem; font-family: var(--f-mono); font-size: .75rem; letter-spacing: .02em; color: var(--muted); line-height: 1.55; text-transform: uppercase; }
 
 /* Contact block: mono, label + value rows */
@@ -154,13 +169,24 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* Profile links */
 .profiles { display: flex; flex-wrap: wrap; gap: .35rem; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ico { width: .875rem; height: .875rem; fill: currentColor; flex: none; }
 .profiles a {
+  display: inline-flex; align-items: center; gap: .4rem;
   font-family: var(--f-mono); font-size: .7188rem; letter-spacing: .02em;
   text-decoration: none; color: var(--ink-2);
   border: 1px solid var(--rule); border-radius: 2px;
   padding: .3rem .5rem; background: var(--surface);
   transition: border-color .15s ease, color .15s ease, background .15s ease;
 }
+.profiles a .ico { color: var(--brand, var(--muted)); }
+.p-scholar      { --brand: #4285F4; }
+.p-orcid        { --brand: #A6CE39; }
+.p-github       { --brand: #181717; }
+.p-dtu          { --brand: #990000; }
+.p-linkedin     { --brand: #0A66C2; }
+.p-researchgate { --brand: #00CCBB; }
+.p-repec        { --brand: #5B6E8C; }
 .profiles a:hover { color: var(--accent-ink); border-color: var(--accent); background: var(--accent-wash); }
 
 /* Rail nav with hairline leaders */
@@ -188,27 +214,42 @@ ul { margin: 0; padding: 0; list-style: none; }
 .theme-toggle:hover { color: var(--accent-ink); border-color: var(--accent); }
 
 /* ---------- Content ---------- */
-.content { display: flex; flex-direction: column; gap: clamp(2.5rem, 5vw, 3.75rem); min-width: 0; }
+.content { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 4.5rem); min-width: 0; }
 section { scroll-margin-top: 2rem; }
 .sechead {
   display: flex; align-items: baseline; gap: .8rem;
-  border-bottom: 1px solid var(--rule); padding-bottom: .55rem; margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule); padding-bottom: .7rem; margin-bottom: 1.75rem;
 }
-.sechead h2 { font-size: 1.0625rem; letter-spacing: .01em; }
+.sechead h2 { font-size: 1.375rem; font-weight: 600; letter-spacing: -.01em; }
 .sechead .count { font-family: var(--f-mono); font-size: .7188rem; color: var(--muted); letter-spacing: .06em; margin-left: auto; white-space: nowrap; }
 
-.prose { max-width: var(--measure); display: flex; flex-direction: column; gap: 1rem; color: var(--ink-2); }
-.prose .lede { font-size: 1.1875rem; line-height: 1.55; color: var(--ink); }
+.prose { max-width: var(--measure); display: flex; flex-direction: column; gap: 1.1rem; color: var(--ink-2); }
+.prose p, .pub .abstract, .sup-item .topic {
+  text-align: justify; text-justify: inter-word;
+  -webkit-hyphens: auto; hyphens: auto;
+}
+.prose .lede { font-size: 1.25rem; line-height: 1.5; color: var(--ink); letter-spacing: -.008em; }
 
 
 /* Tag lists */
-.tagset { display: flex; flex-direction: column; gap: 1.35rem; }
-.tagset h3 { font-family: var(--f-mono); font-size: .7188rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .65rem; }
-.tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+/* Research lists: two columns of hairline-separated rows, not chips */
+.tagset { display: grid; grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr)); gap: 2rem 3rem; }
+.tagset h3 {
+  font-family: var(--f-mono); font-size: .6875rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: .5rem; padding-bottom: .55rem; border-bottom: 1px solid var(--rule);
+}
+.tags { display: flex; flex-direction: column; }
 .tags li {
-  font-family: var(--f-mono); font-size: .75rem; letter-spacing: .01em;
-  color: var(--ink-2); background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 2px; padding: .28rem .55rem;
+  display: grid; grid-template-columns: .9rem minmax(0, 1fr); align-items: start;
+  font-family: var(--f-body); font-size: .9688rem; line-height: 1.45;
+  color: var(--ink-2); padding: .46rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.tags li:last-child { border-bottom: 0; }
+.tags li::before {
+  content: ""; width: .3125rem; height: .3125rem; border-radius: 50%;
+  background: var(--accent); opacity: .55; margin-top: .62em;
 }
 
 /* ---------- Publications ---------- */
@@ -217,24 +258,40 @@ section { scroll-margin-top: 2rem; }
   font-family: var(--f-mono); font-size: .7188rem; font-weight: 600; letter-spacing: .08em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
 }
-.pubs { display: flex; flex-direction: column; gap: 1.1rem; }
+.pubs { display: flex; flex-direction: column; gap: 1.5rem; }
 .pub {
-  display: grid; grid-template-columns: 3.1rem minmax(0, 1fr); gap: 1rem;
+  display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: 1rem;
   padding-left: .75rem; border-left: 2px solid var(--accent);
 }
+.gutter { display: flex; flex-direction: column; align-items: center; gap: .4rem; }
+.cover {
+  width: 3.5rem; height: 4.667rem; display: block; border-radius: 2px;
+  border: 1px solid var(--rule); background: var(--surface-2);
+  object-fit: cover;
+}
+.cover-pre {
+  display: grid; place-items: center;
+  font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .02em;
+  color: var(--muted); background: var(--surface-2);
+  border-style: dashed;
+}
 .pub.is-draft { border-left-style: dashed; border-left-color: var(--rule); }
-@media (max-width: 34rem) { .pub { grid-template-columns: minmax(0,1fr); gap: .35rem; } }
-.pub .id { font-family: var(--f-mono); font-size: .75rem; font-weight: 600; color: var(--accent); letter-spacing: .02em; padding-top: .18rem; }
+@media (max-width: 34rem) {
+  .pub { grid-template-columns: 2.75rem minmax(0,1fr); gap: .75rem; }
+  .cover { width: 2.75rem; height: 3.667rem; }
+}
+.pub .id { font-family: var(--f-mono); font-size: .6875rem; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
 .pub.is-draft .id { color: var(--muted); }
 .pub .body { display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
-.pub .title { font-family: var(--f-display); font-size: 1rem; font-weight: 600; line-height: 1.38; color: var(--ink); letter-spacing: -.005em; }
-.pub .authors { font-size: .9375rem; color: var(--ink-2); line-height: 1.45; }
+.pub .title { font-family: var(--f-display); font-size: 1.0625rem; font-weight: 600; line-height: 1.4; color: var(--ink); letter-spacing: -.008em; }
+.pub .authors { font-size: .9063rem; color: var(--ink-2); line-height: 1.5; text-align: left; }
 .pub .authors .me { color: var(--ink); font-weight: 600; }
 .pub .meta { font-family: var(--f-mono); font-size: .7188rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .15rem; }
 .pub .venue { color: var(--ink-2); font-style: normal; }
 .pub .meta .sep { color: var(--rule); }
-.pub .meta a { color: var(--accent-ink); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
-.pub .meta a:hover { border-bottom-color: var(--accent); }
+.pub .meta a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--link-soft); }
+.pub .meta a:hover { border-bottom-color: var(--link); }
+.pub .abstract a { color: var(--link); text-decoration-color: var(--link-soft); }
 .flag {
   font-family: var(--f-mono); font-size: .6563rem; letter-spacing: .06em; text-transform: uppercase;
   color: var(--signal); background: var(--signal-wash);
@@ -261,8 +318,8 @@ section { scroll-margin-top: 2rem; }
 .pub summary:hover { color: var(--accent-ink); }
 .pub summary:hover::before { border-color: var(--accent); color: var(--accent); }
 .pub .abstract {
-  margin-top: .55rem; max-width: var(--measure);
-  font-size: .9063rem; line-height: 1.58; color: var(--ink-2);
+  margin-top: .6rem; max-width: var(--measure);
+  font-size: .9063rem; line-height: 1.62; color: var(--ink-2);
   border-left: 1px solid var(--rule); padding-left: .9rem;
   overflow-wrap: break-word;
 }
@@ -279,7 +336,7 @@ section { scroll-margin-top: 2rem; }
 
 
 /* ---------- Supervision ---------- */
-.sup { display: flex; flex-direction: column; gap: 1rem; }
+.sup { display: flex; flex-direction: column; gap: 1.4rem; }
 .sup-item { display: grid; grid-template-columns: 4.6rem minmax(0,1fr); gap: 1rem; align-items: baseline; }
 @media (max-width: 34rem) { .sup-item { grid-template-columns: minmax(0,1fr); gap: .3rem; } }
 .sup-item .lvl { font-family: var(--f-mono); font-size: .7188rem; letter-spacing: .04em; color: var(--muted); }
@@ -303,6 +360,16 @@ section { scroll-margin-top: 2rem; }
 
 <a class="skip" href="#about">Skip to content</a>
 
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-scholar" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></symbol>
+  <symbol id="i-orcid" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="i-dtu" viewBox="0 0 24 24"><path d="M12 2.2 2.6 7.1v1.6h18.8V7.1z"/><path d="M4.8 10.3h2.4v7.4H4.8zM10.8 10.3h2.4v7.4h-2.4zM16.8 10.3h2.4v7.4h-2.4z"/><path d="M2.6 19.3h18.8v2.5H2.6z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3z"/><path d="M9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C20.5 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.03-3.32-2.03 0-2.34 1.58-2.34 3.21V21H9z"/></symbol>
+  <symbol id="i-researchgate" viewBox="0 0 24 24"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></symbol>
+  <symbol id="i-repec" viewBox="0 0 24 24"><path d="M5.4 2h8.3l5 5v12.1a.9.9 0 0 1-.9.9H5.4a.9.9 0 0 1-.9-.9V2.9a.9.9 0 0 1 .9-.9z"/><path d="M13.3 2.4V7a.6.6 0 0 0 .6.6h4.5z" fill="#fff" opacity=".45"/><path d="M7.3 11.1h6.6v1.4H7.3zM7.3 14h6.6v1.4H7.3zM7.3 16.9h4.3v1.4H7.3z" fill="#fff" opacity=".9"/></symbol>
+</svg>
+
 <div class="shell">
 
   <!-- ===================== IDENTITY RAIL ===================== -->
@@ -325,13 +392,13 @@ section { scroll-margin-top: 2rem; }
     </ul>
 
     <ul class="profiles">
-      <li><a href="https://scholar.google.com/citations?user=9Unlup4AAAAJ&amp;hl=en">Scholar</a></li>
-      <li><a href="https://orcid.org/0000-0002-5517-2585">ORCID</a></li>
-      <li><a href="https://github.com/AregaGetaneh">GitHub</a></li>
-      <li><a href="https://www.dtu.dk/person/arega-getaneh-abate?id=188921&amp;entity=profile">DTU</a></li>
-      <li><a href="https://www.linkedin.com/in/arega-getaneh">LinkedIn</a></li>
-      <li><a href="https://www.researchgate.net/profile/Arega-Abate">ResearchGate</a></li>
-      <li><a href="https://ideas.repec.org/f/pab470.html">RePEc</a></li>
+      <li><a class="p-scholar" href="https://scholar.google.com/citations?user=9Unlup4AAAAJ&amp;hl=en"><svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg><span>Scholar</span></a></li>
+      <li><a class="p-orcid" href="https://orcid.org/0000-0002-5517-2585"><svg class="ico" aria-hidden="true"><use href="#i-orcid"/></svg><span>ORCID</span></a></li>
+      <li><a class="p-github" href="https://github.com/AregaGetaneh"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg><span>GitHub</span></a></li>
+      <li><a class="p-dtu" href="https://www.dtu.dk/person/arega-getaneh-abate?id=188921&amp;entity=profile"><svg class="ico" aria-hidden="true"><use href="#i-dtu"/></svg><span>DTU</span></a></li>
+      <li><a class="p-linkedin" href="https://www.linkedin.com/in/arega-getaneh"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg><span>LinkedIn</span></a></li>
+      <li><a class="p-researchgate" href="https://www.researchgate.net/profile/Arega-Abate"><svg class="ico" aria-hidden="true"><use href="#i-researchgate"/></svg><span>ResearchGate</span></a></li>
+      <li><a class="p-repec" href="https://ideas.repec.org/f/pab470.html"><svg class="ico" aria-hidden="true"><use href="#i-repec"/></svg><span>RePEc</span></a></li>
     </ul>
 
     <nav class="railnav" aria-label="Sections">
@@ -352,9 +419,9 @@ section { scroll-margin-top: 2rem; }
     <section id="about">
       <div class="sechead"><h2>About</h2><span class="count">01</span></div>
       <div class="prose">
-        <p class="lede">I work on the design of electricity markets. I build optimization and equilibrium models, and pair them with learning algorithms that let market participants adapt under uncertainty.</p>
-        <p>My research sits between operations research, energy economics, and machine learning. Recent work covers contract and tariff design under emissions policy, storage bidding in fully renewable systems, no-regret learning in forward markets, and the economics of AI-driven platforms for electric mobility.</p>
-        <p>I joined DTU Management in 2025. Before that I was a Marie Sk&#322;odowska-Curie fellow at DTU Wind and Energy Systems, working on AI-assisted electricity market design. My PhD is in Mathematical Methods of Economics, Finance, and Actuarial Sciences, from the University of Brescia in 2021, with an 18-month visit to Universidad Carlos III de Madrid.</p>
+        <p class="lede">I am a Postdoctoral Researcher in energy economics, electricity market, investment analysis, contracts designs, market competition, and decision-making under uncertainty in technology-based markets. My research interest includes almost everything that may lie in the intersection of Economics, Finance, Operations Research, and Machine Learning.</p>
+        <p>I build optimization and equilibrium models and pair them with learning algorithms that let market participants adapt under uncertainty. Recent work covers contract and tariff design under emissions policy, storage bidding in fully renewable systems, no-regret learning in forward markets, and the economics of AI-driven platforms for electric mobility.</p>
+        <p>I joined DTU Management in 2025. From 2023 to 2024 I was a Marie Sk&#322;odowska-Curie Postdoctoral Researcher at DTU Wind and Energy Systems, funded by the EuroTechPostdoc2 programme, working on AI-assisted electricity market design for sustainability. My PhD is in Mathematical Methods of Economics, Finance, and Actuarial Sciences, from the University of Brescia in 2021, with an 18-month visit to Universidad Carlos III de Madrid.</p>
       </div>
 
     </section>
@@ -406,7 +473,7 @@ section { scroll-margin-top: 2rem; }
         <ul class="pubs">
 
           <li class="pub">
-            <span class="id">J6</span>
+            <span class="gutter"><img class="cover" src="assets/journals/omega.jpg" alt="Omega cover" width="168" height="224" loading="lazy" /><span class="id">J6</span></span>
             <div class="body">
               <span class="title">Bidding strategies for energy storage operators in a 100% renewable electricity market: A game-theoretic approach</span>
               <span class="authors"><span class="me">A. G. Abate</span>, D. Keles, S. Hassi, X. Zhang, X. Liu</span>
@@ -419,7 +486,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub">
-            <span class="id">J5</span>
+            <span class="gutter"><img class="cover" src="assets/journals/apenergy.jpg" alt="Applied Energy cover" width="168" height="224" loading="lazy" /><span class="id">J5</span></span>
             <div class="body">
               <span class="title">IoT-enabled interoperability for energy&#8211;mobility integration: A systematic review of protocols, platforms, and standards</span>
               <span class="authors">X. Liu, R. Liu, X. Zhang, <span class="me">A. G. Abate</span>, P. S. Nielsen, D. Keles</span>
@@ -432,7 +499,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub">
-            <span class="id">J4</span>
+            <span class="gutter"><img class="cover" src="assets/journals/orspectrum.jpg" alt="OR Spectrum cover" width="168" height="224" loading="lazy" /><span class="id">J4</span></span>
             <div class="body">
               <span class="title">Dynamic tariff-based demand response in the retail electricity market under uncertainty</span>
               <span class="authors"><span class="me">A. G. Abate</span>, R. Riccardi, C. Ruiz</span>
@@ -445,7 +512,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub">
-            <span class="id">J3</span>
+            <span class="gutter"><img class="cover" src="assets/journals/epsr.jpg" alt="Electric Power Systems Research cover" width="168" height="224" loading="lazy" /><span class="id">J3</span></span>
             <div class="body">
               <span class="title">Learning to bid in forward electricity markets using a no-regret algorithm</span>
               <span class="authors"><span class="me">A. G. Abate</span>, D. Majdi, J. Kazempour, M. Kamgarpour</span>
@@ -458,7 +525,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub">
-            <span class="id">J2</span>
+            <span class="gutter"><img class="cover" src="assets/journals/omega.jpg" alt="Omega cover" width="168" height="224" loading="lazy" /><span class="id">J2</span></span>
             <div class="body">
               <span class="title">Contract design in electricity markets with high penetration of renewables: A two-stage approach</span>
               <span class="authors"><span class="me">A. G. Abate</span>, R. Riccardi, C. Ruiz</span>
@@ -471,7 +538,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub">
-            <span class="id">J1</span>
+            <span class="gutter"><img class="cover" src="assets/journals/eneco.jpg" alt="Energy Economics cover" width="168" height="224" loading="lazy" /><span class="id">J1</span></span>
             <div class="body">
               <span class="title">Contracts in electricity markets under EU ETS: A stochastic programming approach</span>
               <span class="authors"><span class="me">A. G. Abate</span>, R. Riccardi, C. Ruiz</span>
@@ -491,7 +558,7 @@ section { scroll-margin-top: 2rem; }
         <ul class="pubs">
 
           <li class="pub is-draft">
-            <span class="id">S4</span>
+            <span class="gutter"><span class="cover cover-pre" aria-hidden="true">arXiv</span><span class="id">S4</span></span>
             <div class="body">
               <span class="title">Optimal power expansion planning under uncertainty in sub-Saharan Africa: A stochastic dual dynamic programming approach</span>
               <span class="authors"><span class="me">A. G. Abate</span>, X.-B. Zhang, X. Liu, R. Liu, P. S. Nielsen</span>
@@ -504,7 +571,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub is-draft">
-            <span class="id">S3</span>
+            <span class="gutter"><span class="cover cover-pre" aria-hidden="true">arXiv</span><span class="id">S3</span></span>
             <div class="body">
               <span class="title">Feature-driven reinforcement learning for intraday photovoltaic trading: Reward design and cross-zone transfer in Nordic electricity markets</span>
               <span class="authors"><span class="me">A. G. Abate</span>, X. Liu, R. Liu, X. Zhang</span>
@@ -517,7 +584,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub is-draft">
-            <span class="id">S2</span>
+            <span class="gutter"><span class="cover cover-pre" aria-hidden="true">arXiv</span><span class="id">S2</span></span>
             <div class="body">
               <span class="title">Cost-benefit analysis of an AI-driven operational digital platform for integrated electric mobility, renewable energy, and grid management</span>
               <span class="authors"><span class="me">A. G. Abate</span>, X. Zhang, X. Liu, D. Keles</span>
@@ -530,7 +597,7 @@ section { scroll-margin-top: 2rem; }
           </li>
 
           <li class="pub is-draft">
-            <span class="id">S1</span>
+            <span class="gutter"><span class="cover cover-pre" aria-hidden="true">arXiv</span><span class="id">S1</span></span>
             <div class="body">
               <span class="title">Solar PV installation potential assessment on building facades based on vision and language foundation models</span>
               <span class="authors">R. Liu, D. Zhuang, J. Zhang, <span class="me">A. G. Abate</span>, P. Nielsen, B. Wang, X. Liu</span>
