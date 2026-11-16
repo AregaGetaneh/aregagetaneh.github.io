@@ -288,17 +288,6 @@ section { scroll-margin-top: 2rem; }
 }
 .expand-all:hover { color: var(--accent-ink); border-color: var(--accent); }
 
-/* ---------- Code cards ---------- */
-.repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
-.repo {
-  display: flex; flex-direction: column; gap: .4rem;
-  background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
-  padding: .9rem 1rem; text-decoration: none; color: inherit;
-  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
-}
-.repo:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-1px); }
-.repo .rname { font-family: var(--f-mono); font-size: .8125rem; font-weight: 600; color: var(--accent-ink); overflow-wrap: anywhere; }
-.repo .rdesc { font-size: .9375rem; color: var(--ink-2); line-height: 1.45; }
 
 /* ---------- Supervision ---------- */
 .sup { display: flex; flex-direction: column; gap: 1rem; }
@@ -362,7 +351,6 @@ section { scroll-margin-top: 2rem; }
       <a href="#publications"><span class="idx">03</span><span>Publications</span></a>
       <a href="#teaching"><span class="idx">04</span><span>Teaching</span></a>
       <a href="#supervision"><span class="idx">05</span><span>Supervision</span></a>
-      <a href="#code"><span class="idx">06</span><span>Code</span></a>
     </nav>
 
     <button class="theme-toggle" type="button" id="themeToggle" aria-live="polite">Dark mode</button>
@@ -657,23 +645,6 @@ section { scroll-margin-top: 2rem; }
       </ul>
     </section>
 
-    <!-- 04 Code -->
-    <section id="code">
-      <div class="sechead"><h2>Code</h2><span class="count">06</span></div>
-      <div class="prose" style="margin-bottom:1.25rem">
-        <p>Replication code and models for some of the papers above can be found on <a href="https://github.com/AregaGetaneh">GitHub</a>.</p>
-      </div>
-      <div class="repos">
-        <a class="repo" href="https://github.com/AregaGetaneh/single-price-balancing">
-          <span class="rname">single-price-balancing</span>
-          <span class="rdesc">Replication code for optimal bidding under single-price imbalance settlement in electricity markets.</span>
-        </a>
-        <a class="repo" href="https://github.com/AregaGetaneh/Day_ahead-bidding-strategy">
-          <span class="rname">Day_ahead-bidding-strategy</span>
-          <span class="rdesc">Day-ahead market bidding strategies for price-taking and strategic participants.</span>
-        </a>
-      </div>
-    </section>
 
     <footer class="foot">
       <span>Arega Getaneh Abate &#183; DTU Management</span>
