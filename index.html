@@ -1,170 +1,701 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arega Getaneh Abate | AI-Assisted Electricity Market Research</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #001f3f;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #001f3f;
-            color: white;
-            padding: 2em 1em;
-            text-align: center;
-        }
-        nav {
-            background-color: #004080;
-            display: flex;
-            justify-content: center;
-            padding: 1em 0;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            display: none;
-            padding: 2em;
-            text-align: center;
-        }
-        section.active {
-            display: block;
-        }
-        .content {
-            max-width: 1000px;
-            margin: auto;
-            text-align: left;
-        }
-        footer {
-            background-color: #001f3f;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
-        .contact-info {
-            display: flex;
-            align-items: flex-start;
-            padding: 20px;
-            text-align: left;
-        }
-        .contact-info img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-        .main-content {
-            text-align: left;
-            font-size: 16px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: auto;
-        }
-        .home-text p {
-            margin-bottom: 1.5em;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arega Getaneh Abate</title>
+<meta name="description" content="Arega Getaneh Abate, postdoctoral researcher in the Energy Market and Finance section at DTU Management. Electricity market design, optimization, and machine learning." />
+<meta name="author" content="Arega Getaneh Abate" />
+<link rel="canonical" href="https://aregagetaneh.github.io/" />
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Arega Getaneh Abate" />
+<meta property="og:description" content="Postdoctoral researcher in the Energy Market and Finance section at DTU Management. Electricity market design, optimization, and machine learning." />
+<meta property="og:url" content="https://aregagetaneh.github.io/" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E6B57'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' fill='%23F5F7F6' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+<style>
+/* ============================================================
+   Tokens. Light is the bare :root. Dark is redefined twice so
+   it works for system preference and for an explicit toggle.
+   ============================================================ */
+:root {
+  --paper:      #F5F7F6;
+  --surface:    #FFFFFF;
+  --surface-2:  #ECF0EE;
+  --ink:        #141B19;
+  --ink-2:      #3A4844;
+  --muted:      #66756F;
+  --rule:       #D5DDD9;
+  --rule-soft:  #E4EAE7;
+  --accent:     #0E6B57;
+  --accent-ink: #0A5544;
+  --accent-wash:#E2EFEA;
+  --signal:     #B4531C;
+  --signal-wash:#F6E9DF;
+  --shadow:     0 1px 2px rgba(20,27,25,.05), 0 8px 24px -16px rgba(20,27,25,.25);
+
+  --f-display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --f-body:    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+  --f-mono:    ui-monospace, "Cascadia Mono", "Cascadia Code", "SF Mono", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+
+  --measure: 66ch;
+  --rail: 19rem;
+  --gap: clamp(2rem, 4vw, 3.75rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0D1312;
+    --surface:    #141C1A;
+    --surface-2:  #1B2422;
+    --ink:        #E7EDEA;
+    --ink-2:      #BDC9C4;
+    --muted:      #8C9A94;
+    --rule:       #2A3633;
+    --rule-soft:  #202B29;
+    --accent:     #58C4A4;
+    --accent-ink: #7FD6BC;
+    --accent-wash:#13302A;
+    --signal:     #E09256;
+    --signal-wash:#322215;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0D1312;
+  --surface:    #141C1A;
+  --surface-2:  #1B2422;
+  --ink:        #E7EDEA;
+  --ink-2:      #BDC9C4;
+  --muted:      #8C9A94;
+  --rule:       #2A3633;
+  --rule-soft:  #202B29;
+  --accent:     #58C4A4;
+  --accent-ink: #7FD6BC;
+  --accent-wash:#13302A;
+  --signal:     #E09256;
+  --signal-wash:#322215;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+
+/* ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent-ink); text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-underline-offset: .18em; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 650; text-wrap: balance; margin: 0; line-height: 1.18; letter-spacing: -.015em; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 50;
+  background: var(--accent); color: var(--paper);
+  padding: .6rem 1rem; font-family: var(--f-mono); font-size: .8rem;
+}
+.skip:focus { left: .75rem; top: .75rem; }
+
+/* ---------- Shell ---------- */
+.shell {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 4vw, 4rem) clamp(1.1rem, 4vw, 3rem) 4rem;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+@media (max-width: 62rem) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+}
+
+/* ---------- Identity rail ---------- */
+.rail { position: sticky; top: clamp(1.75rem, 4vw, 3rem); display: flex; flex-direction: column; gap: 1.75rem; }
+@media (max-width: 62rem) { .rail { position: static; } }
+
+.portrait {
+  position: relative;
+  width: 8.5rem; height: 8.5rem;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--accent-wash);
+  border: 1px solid var(--rule);
+  display: grid; place-items: center;
+  flex: none;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1; }
+.portrait .monogram {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--f-mono); font-size: 2.4rem; font-weight: 700;
+  color: var(--accent); letter-spacing: -.04em;
+}
+
+.name { font-size: clamp(1.6rem, 2.2vw, 1.95rem); letter-spacing: -.025em; }
+.role { margin-top: .5rem; font-size: .9375rem; color: var(--ink-2); line-height: 1.5; }
+.affil { margin-top: .35rem; font-family: var(--f-mono); font-size: .75rem; letter-spacing: .02em; color: var(--muted); line-height: 1.55; text-transform: uppercase; }
+
+/* Contact block: mono, label + value rows */
+.contact { display: flex; flex-direction: column; gap: .4rem; font-family: var(--f-mono); font-size: .8125rem; }
+.contact li { display: grid; grid-template-columns: 3.1rem minmax(0, 1fr); gap: .5rem; align-items: baseline; }
+.contact .k { color: var(--muted); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+.contact .v { color: var(--ink-2); overflow-wrap: anywhere; }
+
+/* Profile links */
+.profiles { display: flex; flex-wrap: wrap; gap: .35rem; }
+.profiles a {
+  font-family: var(--f-mono); font-size: .7188rem; letter-spacing: .02em;
+  text-decoration: none; color: var(--ink-2);
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: .3rem .5rem; background: var(--surface);
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.profiles a:hover { color: var(--accent-ink); border-color: var(--accent); background: var(--accent-wash); }
+
+/* Rail nav with hairline leaders */
+.railnav { border-top: 1px solid var(--rule); padding-top: 1.1rem; display: flex; flex-direction: column; }
+.railnav a {
+  display: grid; grid-template-columns: 1.9rem minmax(0,1fr); align-items: baseline;
+  font-family: var(--f-mono); font-size: .8125rem; letter-spacing: .01em;
+  text-decoration: none; color: var(--muted);
+  padding: .4rem 0; border-bottom: 1px solid var(--rule-soft);
+  transition: color .15s ease;
+}
+.railnav a:last-child { border-bottom: 0; }
+.railnav a:hover, .railnav a.is-active { color: var(--accent-ink); }
+.railnav .idx { color: color-mix(in srgb, var(--muted) 65%, transparent); font-size: .6875rem; }
+.railnav a.is-active .idx { color: var(--accent); }
+
+.theme-toggle {
+  align-self: flex-start;
+  font-family: var(--f-mono); font-size: .7188rem; letter-spacing: .04em;
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: .32rem .55rem; cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.theme-toggle:hover { color: var(--accent-ink); border-color: var(--accent); }
+
+/* ---------- Content ---------- */
+.content { display: flex; flex-direction: column; gap: clamp(2.5rem, 5vw, 3.75rem); min-width: 0; }
+section { scroll-margin-top: 2rem; }
+.sechead {
+  display: flex; align-items: baseline; gap: .8rem;
+  border-bottom: 1px solid var(--rule); padding-bottom: .55rem; margin-bottom: 1.5rem;
+}
+.sechead h2 { font-size: 1.0625rem; letter-spacing: .01em; }
+.sechead .count { font-family: var(--f-mono); font-size: .7188rem; color: var(--muted); letter-spacing: .06em; margin-left: auto; white-space: nowrap; }
+
+.prose { max-width: var(--measure); display: flex; flex-direction: column; gap: 1rem; color: var(--ink-2); }
+.prose .lede { font-size: 1.1875rem; line-height: 1.55; color: var(--ink); }
+
+/* Metrics strip */
+.metrics {
+  margin-top: 1.75rem; max-width: var(--measure);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; background: var(--surface);
+}
+.metrics div { padding: .8rem .9rem; border-right: 1px solid var(--rule-soft); }
+.metrics div:last-child { border-right: 0; }
+.metrics .n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 600; color: var(--ink); line-height: 1.1; }
+.metrics .l { font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+.metrics-note { font-family: var(--f-mono); font-size: .6875rem; color: var(--muted); margin-top: .5rem; }
+
+/* Tag lists */
+.tagset { display: flex; flex-direction: column; gap: 1.35rem; }
+.tagset h3 { font-family: var(--f-mono); font-size: .7188rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .65rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tags li {
+  font-family: var(--f-mono); font-size: .75rem; letter-spacing: .01em;
+  color: var(--ink-2); background: var(--surface);
+  border: 1px solid var(--rule); border-radius: 2px; padding: .28rem .55rem;
+}
+
+/* ---------- Publications ---------- */
+.pubgroup + .pubgroup { margin-top: 2.25rem; }
+.pubgroup > h3 {
+  font-family: var(--f-mono); font-size: .7188rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+}
+.pubs { display: flex; flex-direction: column; gap: 1.1rem; }
+.pub {
+  display: grid; grid-template-columns: 3.1rem minmax(0, 1fr); gap: 1rem;
+  padding-left: .75rem; border-left: 2px solid var(--accent);
+}
+.pub.is-draft { border-left-style: dashed; border-left-color: var(--rule); }
+@media (max-width: 34rem) { .pub { grid-template-columns: minmax(0,1fr); gap: .35rem; } }
+.pub .id { font-family: var(--f-mono); font-size: .75rem; font-weight: 600; color: var(--accent); letter-spacing: .02em; padding-top: .18rem; }
+.pub.is-draft .id { color: var(--muted); }
+.pub .body { display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
+.pub .title { font-family: var(--f-display); font-size: 1rem; font-weight: 600; line-height: 1.38; color: var(--ink); letter-spacing: -.005em; }
+.pub .authors { font-size: .9375rem; color: var(--ink-2); line-height: 1.45; }
+.pub .authors .me { color: var(--ink); font-weight: 600; }
+.pub .meta { font-family: var(--f-mono); font-size: .7188rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .15rem; }
+.pub .venue { color: var(--ink-2); font-style: normal; }
+.pub .meta .sep { color: var(--rule); }
+.pub .meta a { color: var(--accent-ink); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+.pub .meta a:hover { border-bottom-color: var(--accent); }
+.flag {
+  font-family: var(--f-mono); font-size: .6563rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--signal); background: var(--signal-wash);
+  border: 1px solid color-mix(in srgb, var(--signal) 32%, transparent);
+  border-radius: 2px; padding: .15rem .38rem;
+}
+
+/* Abstract disclosure */
+.pub details { margin-top: .3rem; }
+.pub summary {
+  display: inline-flex; align-items: center; gap: .4rem; width: max-content;
+  font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; list-style: none; padding: .1rem 0;
+  transition: color .15s ease;
+}
+.pub summary::-webkit-details-marker { display: none; }
+.pub summary::marker { content: ""; }
+.pub summary::before {
+  content: "+"; display: inline-grid; place-items: center;
+  width: .95rem; height: .95rem; border: 1px solid var(--rule); border-radius: 2px;
+  font-size: .75rem; line-height: 1; color: var(--muted);
+}
+.pub details[open] summary::before { content: "2"; }
+.pub summary:hover { color: var(--accent-ink); }
+.pub summary:hover::before { border-color: var(--accent); color: var(--accent); }
+.pub .abstract {
+  margin-top: .55rem; max-width: var(--measure);
+  font-size: .9063rem; line-height: 1.58; color: var(--ink-2);
+  border-left: 1px solid var(--rule); padding-left: .9rem;
+  overflow-wrap: break-word;
+}
+.pub .abstract a { overflow-wrap: anywhere; }
+
+/* Expand-all control in the section head */
+.expand-all {
+  font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--muted); background: transparent; border: 1px solid var(--rule);
+  border-radius: 2px; padding: .22rem .5rem; cursor: pointer; margin-left: auto;
+  transition: color .15s ease, border-color .15s ease;
+}
+.expand-all:hover { color: var(--accent-ink); border-color: var(--accent); }
+
+/* ---------- Code cards ---------- */
+.repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
+.repo {
+  display: flex; flex-direction: column; gap: .4rem;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+  padding: .9rem 1rem; text-decoration: none; color: inherit;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.repo:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-1px); }
+.repo .rname { font-family: var(--f-mono); font-size: .8125rem; font-weight: 600; color: var(--accent-ink); overflow-wrap: anywhere; }
+.repo .rdesc { font-size: .9375rem; color: var(--ink-2); line-height: 1.45; }
+
+/* ---------- Supervision ---------- */
+.sup { display: flex; flex-direction: column; gap: 1rem; }
+.sup-item { display: grid; grid-template-columns: 4.6rem minmax(0,1fr); gap: 1rem; align-items: baseline; }
+@media (max-width: 34rem) { .sup-item { grid-template-columns: minmax(0,1fr); gap: .3rem; } }
+.sup-item .lvl { font-family: var(--f-mono); font-size: .7188rem; letter-spacing: .04em; color: var(--muted); }
+.sup-item .who { font-weight: 600; color: var(--ink); font-family: var(--f-display); font-size: .9688rem; }
+.sup-item .topic { font-size: .9688rem; color: var(--ink-2); line-height: 1.45; }
+.sup-item .with { font-family: var(--f-mono); font-size: .7188rem; color: var(--muted); margin-top: .2rem; }
+.status { font-family: var(--f-mono); font-size: .6563rem; letter-spacing: .06em; text-transform: uppercase; border-radius: 2px; padding: .12rem .36rem; border: 1px solid var(--rule); color: var(--muted); }
+.status.ongoing { color: var(--accent-ink); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-wash); }
+
+/* ---------- Footer ---------- */
+.foot {
+  border-top: 1px solid var(--rule); padding-top: 1.1rem;
+  font-family: var(--f-mono); font-size: .7188rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; justify-content: space-between;
+}
+.foot a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.foot a:hover { color: var(--accent-ink); border-bottom-color: var(--accent); }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Arega Getaneh Abate</h1>
-        <p>Hi and welcome to my page!</p>
-    </header>
-    <nav>
-        <a href="#home" onclick="showSection('home')">Home</a>
-        <a href="#publications" onclick="showSection('publications')">Publications</a>
-        <a href="#supervisions" onclick="showSection('supervisions')">Supervisions</a>
-        <a href="#research" onclick="showSection('research')">Research Interests</a>
+
+<a class="skip" href="#about">Skip to content</a>
+
+<div class="shell">
+
+  <!-- ===================== IDENTITY RAIL ===================== -->
+  <aside class="rail">
+    <div class="portrait">
+      <span class="monogram" aria-hidden="true">AA</span>
+      <img src="assets/portrait.jpg" alt="Arega Getaneh Abate" width="362" height="362" onerror="this.remove()" />
+    </div>
+
+    <div>
+      <h1 class="name">Arega Getaneh Abate</h1>
+      <p class="role">Postdoctoral researcher in the economic and financial analysis of digital platforms and urban energy systems.</p>
+      <p class="affil">Energy Market and Finance<br />DTU Management<br />Technical University of Denmark</p>
+    </div>
+
+    <ul class="contact">
+      <li><span class="k">Email</span><span class="v"><a href="mailto:ageab@dtu.dk">ageab@dtu.dk</a></span></li>
+      <li><span class="k">Phone</span><span class="v">+45 91 78 61 51</span></li>
+      <li><span class="k">Office</span><span class="v">Produktionstorvet 424, room 117<br />2800 Kongens Lyngby, Denmark</span></li>
+    </ul>
+
+    <ul class="profiles">
+      <li><a href="https://scholar.google.com/citations?user=9Unlup4AAAAJ&amp;hl=en">Scholar</a></li>
+      <li><a href="https://orcid.org/0000-0002-5517-2585">ORCID</a></li>
+      <li><a href="https://github.com/AregaGetaneh">GitHub</a></li>
+      <li><a href="https://www.dtu.dk/person/arega-getaneh-abate?id=188921&amp;entity=profile">DTU</a></li>
+      <li><a href="https://www.linkedin.com/in/arega-getaneh">LinkedIn</a></li>
+      <li><a href="https://www.researchgate.net/profile/Arega-Abate">ResearchGate</a></li>
+      <li><a href="https://ideas.repec.org/f/pab470.html">RePEc</a></li>
+    </ul>
+
+    <nav class="railnav" aria-label="Sections">
+      <a href="#about"><span class="idx">01</span><span>About</span></a>
+      <a href="#research"><span class="idx">02</span><span>Research</span></a>
+      <a href="#publications"><span class="idx">03</span><span>Publications</span></a>
+      <a href="#code"><span class="idx">04</span><span>Code</span></a>
+      <a href="#supervision"><span class="idx">05</span><span>Supervision</span></a>
     </nav>
-    <section id="home" class="active">
-        <div class="content">
-            <div class="contact-info">
-                <img src="https://raw.githubusercontent.com/AregaGetaneh/aregaabate.github.io/main/Arega_photo.jpg" alt="Portrait of Arega Abate">
-                <div>
-                    <p><strong>E-mail:</strong> <a href="mailto:ageab@dtu.dk">ageab@dtu.dk</a></p>
-                    <p><strong>Phone:</strong> +45 71786151</p>
-                    <p>Technical University of Denmark, Elektrovej, Building 325, room 142, Kgs. Lyngby 2800, Denmark</p>
-                    <p><strong>Links:</strong> 
-                        <a href="https://www.linkedin.com/in/arega-getaneh/" target="_blank">LinkedIn</a> | 
-                        <a href="https://x.com/agayh21" target="_blank">Twitter</a> | 
-                        <a href="https://orbit.dtu.dk/en/persons/arega-getaneh-abate" target="_blank">DTU Webpage</a> | 
-                        <a href="https://scholar.google.com/citations?hl=en&user=9Unlup4AAAAJ" target="_blank">Google Scholar</a> | 
-                        <a href="https://orcid.org/0000-0002-5517-2585" target="_blank">ORCID</a> | 
-                        <a href="https://www.scopus.com/authid/detail.uri?authorId=57223285018" target="_blank">Scopus</a> | 
-                        <a href="https://www.researchgate.net/profile/Arega-Abate" target="_blank">ResearchGate</a>
-                    </p>
-                </div>
-            </div>
-            <div class="main-content home-text">
-                <p><em>I am a Postdoctoral Researcher in AI-assisted electricity market design for sustainability at Technical University of Denmark (DTU) and a recipient of EuroTechPostdoc2 programme fellowship. I use optimization techniques (mainly stochastic optimization) and machine learning methods (primarily, online and reinforcement learning) to address electricity market challenges. I have developed bidding strategies for electricity market agents, particularly in the day-ahead market, utilizing posterior feedback published by the market operator. </em></p>
-                <p><em>I received my Ph.D. in Mathematical Methods of Economics, Finance, and Actuarial Sciences, from Brescia University (2021). During my PhD, I spent one and a half years at Universidad Carlos III de Madrid (uc3m) in Spain.</em></p>
-            </div>
-        </div>
+
+    <button class="theme-toggle" type="button" id="themeToggle" aria-live="polite">Dark mode</button>
+  </aside>
+
+  <!-- ===================== CONTENT ===================== -->
+  <main class="content">
+
+    <!-- 01 About -->
+    <section id="about">
+      <div class="sechead"><h2>About</h2><span class="count">01</span></div>
+      <div class="prose">
+        <p class="lede">I design and solve optimization and equilibrium models of electricity markets, and pair them with learning algorithms that let market participants adapt under uncertainty.</p>
+        <p>My work sits at the intersection of operations research, energy economics, and machine learning. Recent projects cover contract and tariff design under emissions policy, storage bidding in fully renewable systems, no-regret learning for traders in forward markets, and cost-benefit analysis of AI-driven platforms for electric mobility and grid management.</p>
+        <p>Before joining DTU Management in 2025, I was a Marie Sk&#322;odowska-Curie postdoctoral fellow at DTU Wind and Energy Systems under the EuroTechPostdoc2 programme, working on AI-assisted electricity market design for sustainability. I completed my PhD in Mathematical Methods of Economics, Finance, and Actuarial Sciences at the University of Brescia in 2021, including an 18-month visiting period at Universidad Carlos III de Madrid.</p>
+      </div>
+
+      <div class="metrics">
+        <div><div class="n">124</div><div class="l">Citations</div></div>
+        <div><div class="n">6</div><div class="l">h-index</div></div>
+        <div><div class="n">6</div><div class="l">i10-index</div></div>
+        <div><div class="n">10</div><div class="l">Publications</div></div>
+      </div>
+      <p class="metrics-note">Google Scholar, November 2026.</p>
     </section>
-    <section id="publications">
-        <div class="content">
-            <h2>Publications</h2>
-            <p>[4] A. Getaneh, D. Majdi, J. Kazempour, M. Kamgarpour. Learning to Bid in Forward Electricity Markets with the Hedge Algorithm. Electric Power Systems Research 234(2024) 110787. <a href="https://doi.org/10.1016/j.epsr.2024.110693" target="_blank">link</a> | <a href="https://arxiv.org/pdf/2404.03314v1" target="_blank">arXiv</a> | <a href="https://github.com/AregaGetaneh/Day_ahead-bidding-strategy" target="_blank">GitHub</a></p>
-            <p>[3] A. Getaneh, R. Riccardi, C. Ruiz. Contract design in Electricity Markets with high renewables penetration. A two-stage approach. Omega 111(2022) 102666. <a href="https://doi.org/10.1016/j.omega.2022.102666" target="_blank">link</a> | <a href="https://arxiv.org/abs/2201.09927" target="_blank">arXiv</a></p>
-            <p>[2] A. Getaneh, R. Riccardi, C. Ruiz. Contracts in Electricity Markets under EU ETS: A Stochastic Programming Approach. Energy Economics 99(2021) 105309. <a href="https://doi.org/10.1016/j.eneco.2021.105309" target="_blank">link</a> | <a href="https://arxiv.org/abs/2104.15062" target="_blank">arXiv</a></p>
-            <p>[1] A. Getaneh, R. Riccardi, C. Ruiz. Dynamic tariffs-based demand response in retail electricity market under uncertainty. submitted to OR Spectrum. <a href="https://arxiv.org/abs/2105.03405" target="_blank">arXiv</a></p>
-        </div>
-    </section>
-    <section id="supervisions">
-        <div class="content">
-            <h2>Supervisions</h2>
-            <h3>B.Sc. thesis projects</h3>
-            <p>[1] Dawid Wikto Rataj and Benjamin Nadelmann (joint supervision with Jalal Kazempour): Renewable expansion planning with emissions allowance trading (completed)</p>
-        </div>
-    </section>
+
+    <!-- 02 Research -->
     <section id="research">
-        <div class="content">
-            <h2>Research Interests</h2>
-            <p>My research interests include areas at the intersection of Economics, Finance, Operations Research, and Machine Learning. Power systems, energy economics, and electricity market analytics are the main application areas I work in.</p>
-            <ul>
-                <li>Stochastic programming</li>
-                <li>Distributionally robust optimization</li>
-                <li>Duality and complementarity modeling</li>
-                <li>Equilibrium programs with equilibrium constraints (MPEC)</li>
-                <li>Bilevel Programming</li>
-                <li>GMM Estimation</li>
-                <li>Machine Learning</li>
-                <li>Online and Reinforcement Learning</li>
-            </ul>
-            <p>Topics I have addressed using these methods include:</p>
-            <ul>
-                <li>Electricity Market with a generation mix</li>
-                <li>Contract Designs in Electricity Markets</li>
-                <li>Emissions Trading Schemes</li>
-                <li>Demand Response Program</li>
-                <li>Market making strategy using dynamic programming and optimal control</li>
-                <li>No-regret algorithms for electricity trading agents</li>
-            </ul>
+      <div class="sechead"><h2>Research</h2><span class="count">02</span></div>
+      <div class="prose" style="margin-bottom:1.75rem">
+        <p>I am interested in problems that lie at the intersection of economics, finance, operations research, and machine learning, and in particular in how market design choices shape investment and operation in power systems with high renewable shares.</p>
+      </div>
+      <div class="tagset">
+        <div>
+          <h3>Methods</h3>
+          <ul class="tags">
+            <li>Stochastic programming</li>
+            <li>Distributionally robust optimization</li>
+            <li>Bilevel programming and MPEC</li>
+            <li>Duality and complementarity modeling</li>
+            <li>Equilibrium models</li>
+            <li>GMM estimation</li>
+            <li>Online and no-regret learning</li>
+            <li>Reinforcement learning</li>
+            <li>Dynamic programming and optimal control</li>
+          </ul>
         </div>
+        <div>
+          <h3>Applications</h3>
+          <ul class="tags">
+            <li>Electricity market design</li>
+            <li>Contract and tariff design</li>
+            <li>Emissions trading schemes</li>
+            <li>Demand response</li>
+            <li>Energy storage bidding</li>
+            <li>Market making and algorithmic trading</li>
+            <li>Generation expansion planning</li>
+            <li>Digital platforms for e-mobility</li>
+            <li>Urban energy systems and buildings</li>
+          </ul>
+        </div>
+      </div>
     </section>
-    <footer>
-        <p>&copy; 2024 Arega Abate</p>
+
+    <!-- 03 Publications -->
+    <section id="publications">
+      <div class="sechead"><h2>Publications</h2><button class="expand-all" type="button" id="expandAll" aria-expanded="false">Expand all abstracts</button><span class="count" style="margin-left:.8rem">03</span></div>
+
+      <div class="pubgroup">
+        <h3>Journal articles</h3>
+        <ul class="pubs">
+
+          <li class="pub">
+            <span class="id">J6</span>
+            <div class="body">
+              <span class="title">Bidding strategies for energy storage players in a 100% renewable electricity market: A game-theoretical approach</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, D. Keles, S. Hassi, X. Zhang, X. Liu</span>
+              <span class="meta"><span class="venue">Omega</span><span class="sep">/</span><span>145 (2026) 103661</span><span class="sep">/</span><a href="https://doi.org/10.1016/j.omega.2026.103661">doi:10.1016/j.omega.2026.103661</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">Large-scale energy storage is expected to be a pivotal source of flexibility in electricity systems supplied entirely by renewable energy sources (RES). However, its strategic role in market-based dispatch remains insufficiently understood. In a 100% RES market setting, storage can improve adequacy and renewable utilization by shifting energy across time. It can also acquire market power as the main flexible, price-making technology. In this paper, we develop a Cournot competition model in which storage operators choose quantity bids to maximize profit in a stylized day-ahead electricity market supplied only by RES. Market clearing is represented through residual-demand blocks so that renewable intermittency appears as an intertemporal arbitrage opportunity for storage operators. We formulate the storage operators’ problem in two tractable ways: (ii) a continuous reformulation based on demand blocks, and (ii) an equivalent mixed-integer linear programming (MILP) model with big- M linearization. Nash equilibria are computed with an iterative best-response procedure and benchmarked against a centralized social planner problem to quantify efficiency losses from strategic behavior. The model is calibrated to Denmark’s DK1 bidding zone using 2024 day-ahead data and 2030 renewable-capacity and demand projections. The results show that storage reduces imbalances and improves welfare relative to a no-storage case. Concentrated ownership also creates incentives to withhold flexibility, raise prices, and slow the reduction of unmet demand and curtailment. These findings position storage as both a stabilizing resource and a potential source of market power, highlighting the importance of market designs that jointly consider competition, concentration, and capacity deployment in high-RES systems.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="id">J5</span>
+            <div class="body">
+              <span class="title">IoT-enabled interoperability for energy&#8211;mobility integration: A systematic review of protocols, platforms, and standards</span>
+              <span class="authors">X. Liu, R. Liu, X. Zhang, <span class="me">A. G. Abate</span>, P. S. Nielsen, D. Keles</span>
+              <span class="meta"><span class="venue">Applied Energy</span><span class="sep">/</span><span>411 (2026) 127611</span><span class="sep">/</span><a href="https://doi.org/10.1016/j.apenergy.2026.127611">doi:10.1016/j.apenergy.2026.127611</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">The convergence of the energy and mobility sectors through electric vehicle adoption and smart grid deployment demands seamless interoperability for efficient resource management and sustainability. This systematic literature review examines how Internet of Things (IoT) technologies facilitate integration across these domains. Following Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines, we analyzed 221 peer-reviewed publications from 2015 to 2024. Our review identifies critical challenges spanning technical, semantic, organizational, and regulatory dimensions, and synthesizes IoT-enabled solutions including communication protocols, interoperability platforms, domain-specific standards, and semantic technologies. Analysis of real-world deployments demonstrates tangible benefits: standardized protocols reduce integration costs by 30–50%, edge computing architectures achieve sub-10ms latency for vehicle-to-grid frequency regulation, and semantic interoperability enables cross-domain data fusion. We identify critical research opportunities in privacy-preserving analytics, quantum-safe cryptography, digital twin technologies, and next-generation communications. This work provides researchers, practitioners, and policymakers with a comprehensive reference for advancing IoT-enabled energy-mobility interoperability.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="id">J4</span>
+            <div class="body">
+              <span class="title">Dynamic tariff-based demand response in the retail electricity market under uncertainty</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, R. Riccardi, C. Ruiz</span>
+              <span class="meta"><span class="venue">OR Spectrum</span><span class="sep">/</span><span>2024</span><span class="sep">/</span><a href="https://doi.org/10.1007/s00291-024-00802-x">doi:10.1007/s00291-024-00802-x</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">Demand response programs play a crucial role in improving system reliability and mitigating price volatility by altering the core profile of electricity consumption. This paper proposes a game-theoretical model that captures the dynamic interplay between retailers (leaders) and consumers (followers) in a tariff-based electricity market under uncertainty. The proposed procedure offers theoretical and economic insights by analyzing consumer flexibility within a hierarchical decision-making framework. In particular, two main market configurations are examined under uncertainty: i) there exists a retailer that exercises market power over consumers, and ii) the retailer and the consumers participate in a perfect competitive game. The former is formulated as a mathematical program with equilibrium constraints, whereas the latter is recast as a mixed-integer linear program. These problems are solved by deriving equivalent tractable reformulations based on the Karush-Kuhn-Tucker (KKT) optimality conditions of each agent’s problem. Numerical simulations based on real data from the European Energy Exchange (EEX) are used to illustrate the performance of the proposed methodology. The results indicate that the proposed model effectively characterizes the interactions between retailers and flexible consumers in both perfect and imperfect market structures. Under perfect competition, the economic benefits extend not only to consumers but also to overall social welfare. Conversely, in an imperfect market, retailers leverage consumer flexibility to enhance their expected profits, transferring the risk of uncertainty to end-users. Additionally, the degree of consumer flexibility and consumers’ valuation of electricity consumption play significant roles in shaping market outcomes. These findings highlight the crucial impact of market structure and consumer behavior on the dynamics of electricity market pricing under demand response programs.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="id">J3</span>
+            <div class="body">
+              <span class="title">Learning to bid in forward electricity markets with the Hedge algorithm</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, D. Majdi, J. Kazempour, M. Kamgarpour</span>
+              <span class="meta"><span class="venue">Electric Power Systems Research</span><span class="sep">/</span><span>234 (2024) 110693</span><span class="sep">/</span><a href="https://doi.org/10.1016/j.epsr.2024.110693">doi:10.1016/j.epsr.2024.110693</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">It is a common practice in the current literature of electricity markets to use game-theoretic approaches for strategic price bidding. However, they generally rely on the assumption that the strategic bidders have prior knowledge of rival bids, either perfectly or with some uncertainty. This is not necessarily a realistic assumption. This paper takes a different approach by relaxing such an assumption and exploits a no-regret learning algorithm for repeated games. In particular, by using the a posteriori information about rivals’ bids, a learner can implement a no-regret algorithm to optimize her/his decision making. Given this information, we utilize a multiplicative weight-update algorithm, adapting bidding strategies over multiple rounds of an auction to minimize her/his regret. Our numerical results show that when the proposed learning approach is used the social cost and the market-clearing prices can be higher than those corresponding to the classical game-theoretic approaches. The takeaway for market regulators is that electricity markets might be exposed to greater market power of suppliers than what classical analysis shows.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="id">J2</span>
+            <div class="body">
+              <span class="title">Contract design in electricity markets with high penetration of renewables: A two-stage approach</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, R. Riccardi, C. Ruiz</span>
+              <span class="meta"><span class="venue">Omega</span><span class="sep">/</span><span>111 (2022) 102666</span><span class="sep">/</span><a href="https://doi.org/10.1016/j.omega.2022.102666">doi:10.1016/j.omega.2022.102666</a><span class="flag">Best paper 2022</span></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">The interplay between risk aversion and financial derivatives has received increasing attention since the advent of electricity market liberalization. One important challenge in this context is how to develop economically efficient and cost-effective models to integrate renewable energy sources (RES) in the electricity market, which constitutes a relatively new and exciting field of research. This paper proposes a game-theoretical equilibrium model that characterizes the interactions between oligopolistic generators in a two-stage electricity market under the presence of high RES penetration. Given conventional generators with generation cost uncertainty and renewable generators with intermittent and stochastic capacity, we consider a single futures contract market that is cleared prior to a spot market where the energy delivery takes place. We introduce physical and financial contracts to evaluate their performance assess their impact on the electricity market outcomes and examine how these depend on the level of RES penetration. Since market participants are usually risk-averse, a coherent risk measure is introduced to deal with both risk-neutral and risk-averse generators. We derive analytical relationships between contracts, study the implications of uncertainties, test the performance of the proposed equilibrium model and its main properties through numerical examples. Our results show that overall electricity prices, generation costs, profits, and quantities for conventional generators decrease, whereas quantities and profits for RES generators increase with RES penetration. Hence, both physical and financial contracts efficiently mitigate the impact of uncertainties and help the integration of RES into the electricity system.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="id">J1</span>
+            <div class="body">
+              <span class="title">Contracts in electricity markets under EU ETS: A stochastic programming approach</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, R. Riccardi, C. Ruiz</span>
+              <span class="meta"><span class="venue">Energy Economics</span><span class="sep">/</span><span>99 (2021) 105309</span><span class="sep">/</span><a href="https://doi.org/10.1016/j.eneco.2021.105309">doi:10.1016/j.eneco.2021.105309</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">The European Union Emission Trading Scheme (EU ETS) is a cornerstone of the EU’s strategy to fight climate change and an important device for plummeting greenhouse gas (GHG) emissions in an economically efficient manner. The power industry has switched to an auction-based allocation system at the onset of Phase III of the EU ETS to bring economic efficiency by negating windfall profits that have been resulted from grandfathered allocation of allowances in the previous phases. In this work, we analyze and simulate the interaction of oligopolistic generators in an electricity market with a gametheoretical framework where the electricity and the emissions markets interact in a twostage electricity market. For analytical simplicity, we assume a single futures market where the electricity is committed at the futures price, and the emissions allowance is contracted in advance, prior to a spot market where the energy and allowances delivery takes place. Moreover, a coherent risk measure is applied (Conditional Value at Risk) to model both risk averse and risk neutral generators and a two-stage stochastic optimization setting is introduced to deal with the uncertainty of renewable capacity, demand, generation, and emission costs. The performance of the proposed equilibrium model and its main properties are examined through realistic numerical simulations. Our results show that renewable generators are surging and substituting conventional generators without compromising social welfare. Hence, both renewable deployment and emission allowance auctioning are effectively reducing GHG emissions and promoting low-carbon economic path.</p>
+              </details>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="pubgroup">
+        <h3>Preprints and under review</h3>
+        <ul class="pubs">
+
+          <li class="pub is-draft">
+            <span class="id">S4</span>
+            <div class="body">
+              <span class="title">Optimal power expansion planning under uncertainty in sub-Saharan Africa: A stochastic dual dynamic programming approach</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, X.-B. Zhang, X. Liu, R. Liu, P. S. Nielsen</span>
+              <span class="meta"><span class="venue">Preprint</span><span class="sep">/</span><span>2026</span><span class="sep">/</span><a href="https://arxiv.org/abs/2611.11490">arXiv:2611.11490</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">Universal electricity access and decarbonization are interlinked challenges for sub-Saharan Africa. Generation expansion planning methods used in the region rarely represent sequential and irreversible investment under demand and hydrological uncertainty. This paper develops a multistage stochastic generation expansion model solved with stochastic dual dynamic programming (SDDP) to address the problem. The model represents demand and country-specific Markov hydrological uncertainty, accounts for technology-specific construction lead times, and endogenous reliability. The model is applied to the Ethiopia and Zimbabwe power systems over 2025–2050. The results show that for Ethiopia, the least-cost pathway is hydropower, with wind and solar sources providing increasing diversification. The model reduces cumulative expected unserved energy by about 78 TWh relative to a lower-cost deterministic expected value investment plan. For Zimbabwe, the least-cost pathway expands solar, hydropower, and gas while retaining residual coal as inherited coal capacity retires. Additionally, carbon pricing reduces emissions and increases resource costs by about 3% to 5%, creating a gradual cost-emissions trade-off. Combining a carbon tax policy with concessional solar financing renders the lowest average annual emissions while keeping resource costs below the baseline, which solves the model without emission constraint. At approximately matched expected emissions, emission caps have higher net resource costs than the corresponding carbon tax scenarios. The overall results imply that adaptive investment model can reduce power shortage exposure, while carbon policy design and lower clean investment costs shape the cost of decarbonization in developing power systems.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub is-draft">
+            <span class="id">S3</span>
+            <div class="body">
+              <span class="title">Feature-driven reinforcement learning for intraday photovoltaic trading: Reward design and cross-zone transfer in Nordic electricity markets</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, X. Liu, R. Liu, X. Zhang</span>
+              <span class="meta"><span class="venue">Preprint</span><span class="sep">/</span><span>2025</span><span class="sep">/</span><a href="https://arxiv.org/abs/2510.16021">arXiv:2510.16021</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">Sequential intraday electricity trading allows photovoltaic (PV) operators to reduce imbalance settlement costs as forecasts improve throughout the day. Yet deployable trading policies must jointly handle forecast uncertainty, intraday prices, liquidity, and the asymmetric economics of PV imbalance exposure. This paper proposes a feature-driven reinforcement learning (FDRL) framework for intraday PV trading in the Nordic market. Its main methodological contribution is a corrected reward that evaluates performance relative to a no-trade baseline, removing policy-independent noise that can otherwise push reinforcement learning toward inactive policies in high-price regimes. The framework combines this objective with a predominantly linear policy and a closed-form execution surrogate for efficient, interpretable training. In a strict walk-forward evaluation over 2021-2024 across four Nordic bidding zones (DK1, DK2, SE3, SE4), the method delivers statistically significant profit improvements over the spot-only baseline in every zone. Portfolio experiments show that a pooled cross-zone policy can match zone-specific models, while transfer-learning results indicate a two-cluster market structure and effective deployment in new zones with limited local data. The proposed framework offers an interpretable and computationally practical way to reduce imbalance costs, while the transfer results provide guidance for scaling strategies across bidding zones with different market designs.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub is-draft">
+            <span class="id">S2</span>
+            <div class="body">
+              <span class="title">Cost-benefit analysis of an AI-driven operational digital platform for integrated electric mobility, renewable energy, and grid management</span>
+              <span class="authors"><span class="me">A. G. Abate</span>, X. Zhang, X. Liu, D. Keles</span>
+              <span class="meta"><span class="venue">Preprint</span><span class="sep">/</span><span>2025</span><span class="sep">/</span><a href="https://arxiv.org/abs/2506.20631">arXiv:2506.20631</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">Integrating electric mobility, including electric vehicles (EVs), electric trucks (ETs), and renewable energy sources (RES) with the power grid is paramount for decarbonization, efficiency, and stability. A critical gap remains, however: existing smart-grid and e-mobility cost-benefit analysis (CBA) approaches do not yet provide a unified framework for appraising AI-driven operational digital platforms (ODPs) that jointly coordinate EV/ET charging, renewable generation, and grid operations across sectoral and national boundaries. This paper develops a seven-step CBA framework tailored to this class of platform. The framework maps each layer of a multi-layered AI architecture to traceable, monetizable benefit streams-panning economic efficiency, grid reliability, and environmental externalities--while explicitly accounting for AI-specific capital and operational expenditures that conventional appraisals omit. Applied to a ten-year, three-country deployment across Austria, Hungary, and Slovenia, the analysis indicates a robust positive investment case under the modeled assumptions, confirmed through scenario sensitivity analysis, one-way parameter ranking, and probabilistic simulation. Benefit composition and country-level drivers differ systematically across national contexts, yet the economic rationale is preserved in each, reflecting the framework's adaptability to heterogeneous electrification trajectories. The findings indicate the economic viability of AI-driven digital platforms for cross-sectoral energy--mobility integration and highlight the critical role of ODPs in advancing decarbonization in the mobility--power nexus. To that end, they have direct implications for the design and appraisal of digital infrastructure investments under the EU's Fit for 55 and REPowerEU programmes.</p>
+              </details>
+            </div>
+          </li>
+
+          <li class="pub is-draft">
+            <span class="id">S1</span>
+            <div class="body">
+              <span class="title">Solar PV installation potential assessment on building facades based on vision and language foundation models</span>
+              <span class="authors">R. Liu, D. Zhuang, J. Zhang, <span class="me">A. G. Abate</span>, P. Nielsen, B. Wang, X. Liu</span>
+              <span class="meta"><span class="venue">Preprint</span><span class="sep">/</span><span>2025</span><span class="sep">/</span><a href="https://arxiv.org/abs/2510.00797">arXiv:2510.00797</a></span>
+              <details>
+                <summary>Abstract</summary>
+                <p class="abstract">Building facades represent a significant untapped resource for solar energy generation in dense urban environments, yet assessing their photovoltaic (PV) potential remains challenging due to complex geometries and semantic components. This study introduces SF-SPA (Semantic Facade Solar-PV Assessment), an automated framework that transforms street-view photographs into quantitative PV deployment assessments. The approach combines computer vision and artificial intelligence techniques to address three key challenges: perspective distortion correction, semantic understanding of facade elements, and spatial reasoning for PV layout optimization. Our four-stage pipeline processes images through geometric rectification, zero-shot semantic segmentation, Large Language Model (LLM) guided spatial reasoning, and energy simulation. Validation across 80 buildings in four countries demonstrates robust performance with mean area estimation errors of 6.2% ± 2.8% compared to expert annotations. The automated assessment requires approximately 100 seconds per building, a substantial gain in efficiency over manual methods. Simulated energy yield predictions confirm the method's reliability and applicability for regional potential studies, urban energy planning, and building-integrated photovoltaic (BIPV) deployment. Code is available at: <a href="https://github.com/CodeAXu/Solar-PV-Installation">https://github.com/CodeAXu/Solar-PV-Installation</a></p>
+              </details>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 Code -->
+    <section id="code">
+      <div class="sechead"><h2>Code</h2><span class="count">04</span></div>
+      <div class="prose" style="margin-bottom:1.25rem">
+        <p>Replication code and models for the papers above. Everything is on <a href="https://github.com/AregaGetaneh">GitHub</a>.</p>
+      </div>
+      <div class="repos">
+        <a class="repo" href="https://github.com/AregaGetaneh/single-price-balancing">
+          <span class="rname">single-price-balancing</span>
+          <span class="rdesc">Replication code for optimal bidding under single-price imbalance settlement in electricity markets.</span>
+        </a>
+        <a class="repo" href="https://github.com/AregaGetaneh/Day_ahead-bidding-strategy">
+          <span class="rname">Day_ahead-bidding-strategy</span>
+          <span class="rdesc">Day-ahead market bidding strategies for price-taking and strategic participants.</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 05 Supervision -->
+    <section id="supervision">
+      <div class="sechead"><h2>Supervision</h2><span class="count">05</span></div>
+      <ul class="sup">
+        <li class="sup-item">
+          <span class="lvl">MSc</span>
+          <div>
+            <div class="who">Casper Wayne Sahl <span class="status">Completed</span></div>
+            <div class="topic">Geo-temporal optimization of renewable energy: MILP modeling for Power-to-X value.</div>
+            <div class="with">Joint with Dogan Keles</div>
+          </div>
+        </li>
+        <li class="sup-item">
+          <span class="lvl">MSc</span>
+          <div>
+            <div class="who">Nikita Padmadas <span class="status">Completed</span></div>
+            <div class="topic">Strategic intraday trading for PV systems: Optimizing surplus and reducing imbalance.</div>
+            <div class="with">Joint with Lesia Mitridati</div>
+          </div>
+        </li>
+        <li class="sup-item">
+          <span class="lvl">BSc</span>
+          <div>
+            <div class="who">Dawid Wiktor Rataj and Benjamin Nadelmann <span class="status">Completed</span></div>
+            <div class="topic">Renewable expansion planning with emissions allowance trading.</div>
+            <div class="with">Joint with Jalal Kazempour</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span>Arega Getaneh Abate &#183; DTU Management</span>
+      <span>Last updated November 2026</span>
     </footer>
-    <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-        }
-    </script>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  // --- Theme toggle -------------------------------------------------
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('theme'); } catch (e) {}
+  if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+
+  function currentlyDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncLabel() { btn.textContent = currentlyDark() ? 'Light mode' : 'Dark mode'; }
+  syncLabel();
+
+  btn.addEventListener('click', function () {
+    var next = currentlyDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncLabel();
+  });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+    if (!root.getAttribute('data-theme')) syncLabel();
+  });
+
+  // --- Expand / collapse every abstract -----------------------------
+  var expandBtn = document.getElementById('expandAll');
+  var details = Array.prototype.slice.call(document.querySelectorAll('.pub details'));
+  function syncExpand() {
+    var allOpen = details.length > 0 && details.every(function (d) { return d.open; });
+    expandBtn.textContent = allOpen ? 'Collapse all abstracts' : 'Expand all abstracts';
+    expandBtn.setAttribute('aria-expanded', String(allOpen));
+  }
+  expandBtn.addEventListener('click', function () {
+    var open = expandBtn.getAttribute('aria-expanded') !== 'true';
+    details.forEach(function (d) { d.open = open; });
+    syncExpand();
+  });
+  details.forEach(function (d) { d.addEventListener('toggle', syncExpand); });
+  syncExpand();
+
+  // --- Scrollspy on the rail nav -----------------------------------
+  var links = Array.prototype.slice.call(document.querySelectorAll('.railnav a'));
+  var sections = links
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var visible = new Set();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target);
+      });
+      var first = sections.filter(function (s) { return visible.has(s); })[0];
+      links.forEach(function (a) {
+        a.classList.toggle('is-active', !!first && a.getAttribute('href') === '#' + first.id);
+      });
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+
 </body>
 </html>
