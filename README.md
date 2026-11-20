@@ -10,19 +10,29 @@ the section highlight in the left rail.
 ## Layout of the repo
 
 ```
-index.html        the whole site
+index.html             the whole site
 assets/
-  portrait.jpg    your photo (see below)
-.nojekyll         tells GitHub Pages to serve the files as-is
+  portrait.jpg         your photo
+  journals/*.jpg       journal cover thumbnails, 168x224
+.nojekyll              tells GitHub Pages to serve the files as-is
 README.md
 ```
 
 ## Photo
 
-`assets/portrait.jpg` is the 256x256 portrait from the Google Scholar profile.
+`assets/portrait.jpg` is a 362x362 square crop of your original photo.
 Replace it with a larger square image whenever you have one, same filename and
 no other change needed. If the file is ever missing the page falls back to a
 monogram tile instead of showing a broken image.
+
+## Journal covers
+
+Each journal article shows its cover in the left gutter. Covers live in
+`assets/journals/` at 168x224 (a 3:4 crop, 3x the display size). Preprints get
+a dashed `arXiv` tile drawn in CSS instead, so there is no file for those.
+
+To add a journal, save a 3:4 cover as `assets/journals/<name>.jpg` and point the
+new entry's `<img>` at it.
 
 ## Editing
 
@@ -53,7 +63,7 @@ solid rule in the gutter.
     <span class="meta">
       <span class="venue">Journal Name</span><span class="sep">/</span>
       <span>123 (2027) 456789</span><span class="sep">/</span>
-      <a href="https://doi.org/10...">doi:10...</a>
+      <a href="https://doi.org/10..." title="doi:10...">Link</a>
     </span>
   </div>
 </li>
